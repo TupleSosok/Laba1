@@ -16,6 +16,11 @@ public class IntArray {
      * @value значение на сколько увеличиваться масив при переполнении
      */
     static private final int INCREMENT_STEP = 5;
+    /**
+     * @value если в конце пустых элементов больше чем указанно, размер уменьшится
+     * на INCREMENT_STEP
+     */
+    static private final int TOLERANCE_TO_EMPTY = 10;
 
     /**
      * Текущая длинна массива
@@ -53,14 +58,20 @@ public class IntArray {
     /**
      * Delete.
      * Удаление по индексу
-     * * Путем сдвига всего массива на место где был элемент с этим индексом
+     * Путем сдвига всего массива на место где был элемент с этим индексом
      *
-     * @param index the index
-     * @throws IllegalArgumentException если выходит за границы массива, где правая граница
+     * @param index индекс удаляемого элемента
+     * @throws IllegalArgumentException если выходит за границы массива, где правая граница length
      * @see IntArray#array IntArray#array
      */
     public void delete(int index) throws IllegalArgumentException {
         if(index > length || index < 0) throw new IllegalArgumentException();
+        if(array.length - length > 10)
+        {
+            int[] newArray = new int[array.length - INCREMENT_STEP];
+            System.arraycopy(array, 0,newArray,0,array.length);
+            array = newArray.clone();
+        }
         System.arraycopy(array,index + 1, array, index, length - index - 1);
         --length;
     }
