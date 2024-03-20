@@ -15,10 +15,10 @@ public class IntArray {
     /**
      * @value значение на сколько увеличиваться масив при переполнении
      */
-    static private final int INCREMENT_STEP = 10;
+    static private final int INCREMENT_STEP = 5;
 
     /**
-     * Текущая длинна
+     * Текущая длинна массива
      */
     private int length;
 
@@ -41,7 +41,12 @@ public class IntArray {
      * @param num the num
      */
     public void add(int num){
-
+        if(length == array.length){
+            int[] newArray = new int[array.length + INCREMENT_STEP];
+            System.arraycopy(array, 0,newArray,0,array.length);
+            array = newArray.clone();
+        }
+        array[++length] = num;
     }
 
     /**
