@@ -38,7 +38,8 @@ public class IntArray {
     /**
      * Add. Добавление в массив
      * Если переполнен должен создаваться с новой большей длинной
-     * @param num the num
+     *
+     * @param num число для вставки
      */
     public void add(int num){
         if(length == array.length){
@@ -51,11 +52,15 @@ public class IntArray {
 
     /**
      * Delete.
-     *
+     * Удаление по индексу
+     *  * Путем сдвига всего массива на место где был элемент с этим индексом
      * @param index the index
+     * @throws IllegalArgumentException если выходит за границы массива, где правая граница
+     * @see IntArray#array
      */
-    public void delete(int index){
-
+    public void delete(int index) throws IllegalArgumentException {
+        if(index > length || index < 0) throw new IllegalArgumentException();
+        System.arraycopy(array,index + 1, array, index, length - index - 1);
     }
 
     /**
