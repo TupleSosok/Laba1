@@ -53,24 +53,28 @@ public class IntArray {
     /**
      * Delete.
      * Удаление по индексу
-     *  * Путем сдвига всего массива на место где был элемент с этим индексом
+     * * Путем сдвига всего массива на место где был элемент с этим индексом
+     *
      * @param index the index
      * @throws IllegalArgumentException если выходит за границы массива, где правая граница
-     * @see IntArray#array
+     * @see IntArray#array IntArray#array
      */
     public void delete(int index) throws IllegalArgumentException {
         if(index > length || index < 0) throw new IllegalArgumentException();
         System.arraycopy(array,index + 1, array, index, length - index - 1);
     }
 
+
     /**
-     * Int at int.
-     *
+     * Доступ
      * @param index the index
      * @return the int
+     * @throws IllegalArgumentException если выходит за границы массива, где правая граница
+     * @see IntArray#array IntArray#array
      */
-    public int intAt(int index){
-        return 0;
+    public int intAt(int index) throws IllegalArgumentException{
+        if(index > length || index < 0) throw new IllegalArgumentException();
+        return array[index];
     }
 
 }
