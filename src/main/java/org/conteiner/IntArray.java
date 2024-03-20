@@ -42,12 +42,12 @@ public class IntArray {
      * @param num число для вставки
      */
     public void add(int num){
-        if(length == array.length){
+        if(length == array.length - 1){
             int[] newArray = new int[array.length + INCREMENT_STEP];
             System.arraycopy(array, 0,newArray,0,array.length);
             array = newArray.clone();
         }
-        array[++length] = num;
+        array[length++] = num;
     }
 
     /**
@@ -62,6 +62,7 @@ public class IntArray {
     public void delete(int index) throws IllegalArgumentException {
         if(index > length || index < 0) throw new IllegalArgumentException();
         System.arraycopy(array,index + 1, array, index, length - index - 1);
+        --length;
     }
 
 
@@ -77,4 +78,7 @@ public class IntArray {
         return array[index];
     }
 
+    public int getLength() {
+        return length;
+    }
 }
